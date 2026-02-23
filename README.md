@@ -4,11 +4,15 @@ A lightweight, provider-agnostic AI Agent framework built in TypeScript.
 
 - ✅ No SDK dependencies
 - ✅ Raw HTTP only (fetch)
-- ✅ Pluggable LLM providers
-- ✅ Tool calling support
-- ✅ Multi-provider architecture
-- ✅ Production-ready structure
+- ✅ Multi-provider support
+- ✅ Tool calling system
+- ✅ Streaming support
+- ✅ Multi-agent routing
+- ✅ Hono-based runtime
+- ✅ Bun native compatible
+- ✅ Vendor-neutral architecture
 
+---
 Supports:
 
 - OpenAI
@@ -22,7 +26,6 @@ Supports:
 # 🚀 Architecture
 
 ```
-
 src/
 ├── core/
 │     agent.ts
@@ -34,16 +37,22 @@ src/
 │     azure.provider.ts
 │     ollama.provider.ts
 │     claude.provider.ts
+│     openrouter.provider.ts
+│
+├── runtime/
+│     hono-adapter.ts
+│     multi-agent-runtime.ts
 
 ````
 
-### Design Principles
+Design Philosophy:
 
 - Agent is provider-agnostic
-- Providers implement a common interface
-- Tools are dynamically registered
-- No vendor lock-in
-- Fully extensible
+- Providers implement a shared interface
+- Runtime is separated from core logic
+- Tools are pluggable
+- No SDK lock-in
+- Streaming-first design
 
 ---
 
@@ -59,7 +68,19 @@ No external SDKs required.
 
 ---
 
+---
+
 # 🔌 Supported Providers
+
+| Provider     | SDK Used | Raw HTTP | Streaming |
+| ------------ | -------- | -------- | --------- |
+| OpenAI       | ❌        | ✅        | ✅         |
+| Azure OpenAI | ❌        | ✅        | Optional  |
+| Ollama       | ❌        | ✅        | ✅         |
+| Claude       | ❌        | ✅        | Optional  |
+| OpenRouter   | ❌        | ✅        | ✅         |
+
+---
 
 ## 1️⃣ OpenAI
 
@@ -189,10 +210,11 @@ Max iterations are configurable to prevent infinite loops.
 export interface LLMProvider {
   name: string;
   chat(messages: Message[]): Promise<string>;
+  stream?(messages: Message[]): AsyncGenerator<string>;
 }
 ```
 
-Any provider must implement this interface.
+Streaming is optional per provider.
 
 ---
 
@@ -276,12 +298,83 @@ Using raw HTTP:
 * Works in Bun, Node, Edge, Deno
 * Easier debugging
 * Cleaner abstraction layer
+---
+
+# 🌐 API Endpoints
+
+## Health Check
+
+```
+GET /agent/:name/health
+```
+
+Example:
+
+```
+GET /agent/router/health
+```
 
 ---
 
-# 📜 License
+## Standard Chat
 
-MIT
+```
+POST /agent/:name/chat
+```
+
+Body:
+
+```json
+{
+  "message": "What is 12 * 9?"
+}
+```
+
+---
+
+## 🔥 Streaming Chat
+
+```
+POST /agent/:name/stream
+```
+
+Returns streamed response (chunked).
+
+Works with providers implementing `stream()`.
+
+---
+
+# 🟢 Bun Native Runtime
+
+No `@hono/node-server` required.
+
+```ts
+export default {
+  port: 3000,
+  fetch: app.fetch,
+};
+```
+
+Run:
+
+```bash
+bun run index.ts
+```
+
+---
+# 🏗 Extending the Framework
+
+Possible enhancements:
+
+* SSE streaming parser
+* Provider failover
+* Middleware pipeline
+* Redis memory adapter
+* Agent orchestration engine
+* Tool schema validation (Zod)
+* Observability hooks
+* Cost tracking
+* OpenTelemetry support
 
 ---
 
@@ -298,27 +391,28 @@ MIT
 
 This project treats LLMs as infrastructure.
 
-Not as SDK-locked black boxes.
+Not SDK-bound utilities.
 
-The Agent is:
+It provides:
 
-* Portable
-* Modular
-* Vendor-neutral
-* Extensible
-* Production-oriented
+* Clean separation
+* Vendor neutrality
+* Pluggable architecture
+* Production-grade runtime
+* Multi-agent support
+* Streaming-first design
 
 ---
 
-# 🧠 Future Roadmap
+# 🧠 Why No SDK?
 
-* Unified streaming API
-* Function calling normalization layer
-* Memory abstraction
-* Agent orchestration engine
-* Plugin ecosystem
-* CLI tool
-* Distributed agent runtime
+Using raw HTTP:
+
+* Reduces dependency surface
+* Avoids breaking SDK updates
+* Works in Bun, Node, Edge, Deno
+* Easier debugging
+* Fully controlled abstraction layer
 
 ---
 
