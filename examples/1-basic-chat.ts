@@ -3,8 +3,8 @@
  * Shows how to use each provider for simple chat interactions
  */
 
-import { OpenAIProvider, ClaudeProvider, OllamaProvider } from "aruvi";
-import type { Message } from "aruvi";
+import { OpenAIProvider, ClaudeProvider, OllamaProvider } from "aruvi-agent-sdk";
+import type { Message } from "aruvi-agent-sdk";
 
 // Example 1.1: OpenAI
 async function exampleOpenAI() {

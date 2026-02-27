@@ -76,11 +76,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/aruvi-agent-sdk.git"
+    "url": "https://github.com/pratheek-c/aruvi-agent-sdk.git"
   },
-  "homepage": "https://github.com/your-username/aruvi-agent-sdk#readme",
+  "homepage": "https://github.com/pratheek-c/aruvi-agent-sdk#readme",
   "bugs": {
-    "url": "https://github.com/your-username/aruvi-agent-sdk/issues"
+    "url": "https://github.com/pratheek-c/aruvi-agent-sdk/issues"
   },
   "engines": {
     "node": ">=18.0.0"
@@ -104,6 +104,6 @@
   },
   "devDependencies": {
     "@types/bun": "latest",
-    "typescript": "^5.3.0"
+    "typescript": "^5.9.3"
   }
 }

@@ -3,8 +3,8 @@
  * Shows how to create custom tools and register them with agents
  */
 
-import { Agent, OpenAIProvider } from "aruvi";
-import type { Tool } from "aruvi";
+import { Agent, OpenAIProvider } from "aruvi-agent-sdk";
+import type { Tool } from "aruvi-agent-sdk";
 
 // Example 3.1: Calculator Tool
 const calculatorTool: Tool = {

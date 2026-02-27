@@ -8,7 +8,7 @@ import {
   OpenAIProvider,
   ClaudeProvider,
   OllamaProvider,
-} from "aruvi";
+} from "aruvi-agent-sdk";
 
 // Create multi-agent runtime
 const app = createMultiAgentRuntime([
