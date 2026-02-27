@@ -20,7 +20,8 @@ Complete guide with practical examples for using the Aruvi Agent Framework.
 ### OpenAI Provider
 
 ```typescript
-import { OpenAIProvider } from "./src/providers/openai.provider";
+import { OpenAIProvider } from "aruvi";
+import type { Message } from "aruvi";
 
 const provider = new OpenAIProvider(
   process.env.OPENAI_API_KEY!,
@@ -38,7 +39,8 @@ console.log(response);
 ### Azure OpenAI Provider
 
 ```typescript
-import { AzureProvider } from "./src/providers/azure.provider";
+import { AzureProvider } from "aruvi";
+import type { Message } from "aruvi";
 
 const provider = new AzureProvider(
   process.env.AZURE_API_KEY!,
@@ -58,7 +60,8 @@ console.log(response);
 ### Claude (Anthropic) Provider
 
 ```typescript
-import { ClaudeProvider } from "./src/providers/claude.provider";
+import { ClaudeProvider } from "aruvi";
+import type { Message } from "aruvi";
 
 const provider = new ClaudeProvider(
   process.env.ANTHROPIC_API_KEY!,
@@ -76,7 +79,8 @@ console.log(response);
 ### OpenRouter Provider
 
 ```typescript
-import { OpenRouterProvider } from "./src/providers/openrouter.provider";
+import { OpenRouterProvider } from "aruvi";
+import type { Message } from "aruvi";
 
 const provider = new OpenRouterProvider(
   process.env.OPENROUTER_API_KEY!,
@@ -96,7 +100,8 @@ console.log(response);
 ### Ollama (Local) Provider
 
 ```typescript
-import { OllamaProvider } from "./src/providers/ollama.provider";
+import { OllamaProvider } from "aruvi";
+import type { Message } from "aruvi";
 
 // Make sure Ollama is running: ollama serve
 const provider = new OllamaProvider("llama3");
@@ -112,7 +117,8 @@ console.log(response);
 ### Mimo (Xiaomi) Provider
 
 ```typescript
-import { MimoProvider } from "./src/providers/mimo.provider";
+import { MimoProvider } from "aruvi";
+import type { Message } from "aruvi";
 
 const provider = new MimoProvider(
   process.env.MIMO_API_KEY!,
@@ -136,7 +142,8 @@ All providers support streaming responses in real-time.
 ### Basic Streaming
 
 ```typescript
-import { OpenAIProvider } from "./src/providers/openai.provider";
+import { OpenAIProvider } from "aruvi";
+import type { Message } from "aruvi";
 
 const provider = new OpenAIProvider(
   process.env.OPENAI_API_KEY!,
@@ -156,7 +163,8 @@ for await (const chunk of provider.stream(messages)) {
 ### Streaming with Claude
 
 ```typescript
-import { ClaudeProvider } from "./src/providers/claude.provider";
+import { ClaudeProvider } from "aruvi";
+import type { Message } from "aruvi";
 
 const provider = new ClaudeProvider(
   process.env.ANTHROPIC_API_KEY!,
@@ -203,7 +211,7 @@ Create reusable tools for agents to use.
 ### Simple Calculator Tool
 
 ```typescript
-import { Tool } from "./src/core/types";
+import { Tool } from "aruvi";
 
 const calculatorTool: Tool = {
   name: "calculator",
@@ -299,8 +307,8 @@ Create an intelligent agent that can use tools to solve problems.
 ### Basic Agent Setup
 
 ```typescript
-import { Agent } from "./src/core/agent";
-import { OpenAIProvider } from "./src/providers/openai.provider";
+import { Agent, OpenAIProvider } from "aruvi";
+import type { Tool } from "aruvi";
 
 const provider = new OpenAIProvider(
   process.env.OPENAI_API_KEY!,
@@ -362,12 +370,15 @@ console.log(analysis);
 
 Deploy multiple agents in a Hono-based HTTP server.
 
-### Basic Multi-Agent Runtime
+### Multi-Agent Runtime
 
 ```typescript
-import { createMultiAgentRuntime } from "./src/runtime/multi-agent-runtime";
-import { OpenAIProvider } from "./src/providers/openai.provider";
-import { OllamaProvider } from "./src/providers/ollama.provider";
+import {
+  createMultiAgentRuntime,
+  OpenAIProvider,
+  ClaudeProvider,
+  OllamaProvider,
+} from "aruvi";
 
 const app = createMultiAgentRuntime([
   {
@@ -427,8 +438,8 @@ curl -X POST http://localhost:3000/stream/claude \
 ### Multi-Turn Conversation
 
 ```typescript
-import { Message } from "./src/core/types";
-import { OpenAIProvider } from "./src/providers/openai.provider";
+import { OpenAIProvider } from "aruvi";
+import type { Message } from "aruvi";
 
 const provider = new OpenAIProvider(
   process.env.OPENAI_API_KEY!,
@@ -460,7 +471,8 @@ console.log("Assistant:", response);
 ### Provider Fallback Pattern
 
 ```typescript
-import { LLMProvider } from "./src/core/llm";
+import type { LLMProvider, Message } from "aruvi";
+import { OpenAIProvider, OllamaProvider } from "aruvi";
 
 async function chatWithFallback(
   primaryProvider: LLMProvider,
@@ -490,9 +502,8 @@ console.log(response);
 ### Load Balancing Between Providers
 
 ```typescript
-async function chatWithLoadBalancing(
-  providers: LLMProvider[],
-  messages: Message[]
+import type { LLMProvider, Message } from "aruvi";
+import { OpenAIProvider, ClaudeProvider, OllamaProvider } from "aruvi";
 ): Promise<string> {
   // Round-robin selection
   const selectedProvider = providers[Math.floor(Math.random() * providers.length)];
@@ -518,9 +529,7 @@ console.log(response);
 ### Streaming with Progress Tracking
 
 ```typescript
-async function streamWithProgress(
-  provider: LLMProvider,
-  messages: Message[]
+import type { LLMProvider, Message } from "aruvi";
 ): Promise<string> {
   if (!provider.stream) {
     return provider.chat(messages);
@@ -550,9 +559,8 @@ console.log("\nFinal response:", response);
 ### Parallel Requests
 
 ```typescript
-async function parallelChat(
-  providers: LLMProvider[],
-  userQuery: string
+import type { LLMProvider, Message } from "aruvi";
+import { OpenAIProvider, ClaudeProvider, OllamaProvider } from "aruvi";
 ): Promise<Map<string, string>> {
   const messages: Message[] = [
     { role: "user" as const, content: userQuery }
@@ -593,8 +601,7 @@ results.forEach((response, provider) => {
 ### Custom Provider Implementation
 
 ```typescript
-import { LLMProvider } from "./src/core/llm";
-import { Message } from "./src/core/types";
+import type { LLMProvider, Message } from "aruvi";
 
 export class CustomProvider implements LLMProvider {
   name = "custom";
@@ -674,13 +681,14 @@ node dist/examples/your-example.js
 
 ```bash
 bun install
-bun src/examples/your-example.ts
+bun examples/your-example.ts
 ```
 
 ### With TypeScript
 
 ```bash
-npx ts-node src/examples/your-example.ts
+npm install
+npx ts-node examples/your-example.ts
 ```
 
 ---

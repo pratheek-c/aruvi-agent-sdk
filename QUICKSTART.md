@@ -52,7 +52,8 @@ bun examples/5-advanced-patterns.ts
 ## 4. Create Your Own
 
 ```typescript
-import { OpenAIProvider } from "./src/providers/openai.provider";
+import { OpenAIProvider } from "aruvi";
+import type { Message } from "aruvi";
 
 const provider = new OpenAIProvider(
   process.env.OPENAI_API_KEY!,
@@ -76,6 +77,8 @@ console.log(response);
 
 ### Stream a response
 ```typescript
+import { OpenAIProvider } from "aruvi";
+
 for await (const chunk of provider.stream(messages)) {
   process.stdout.write(chunk);
 }
@@ -83,6 +86,9 @@ for await (const chunk of provider.stream(messages)) {
 
 ### Create an agent with tools
 ```typescript
+import { Agent, OpenAIProvider } from "aruvi";
+import type { Tool } from "aruvi";
+
 const agent = new Agent(provider, config);
 agent.registerTool(myTool);
 const result = await agent.run("Do something");
@@ -90,6 +96,12 @@ const result = await agent.run("Do something");
 
 ### Use multiple providers
 ```typescript
+import {
+  OpenAIProvider,
+  ClaudeProvider,
+  OllamaProvider,
+} from "aruvi";
+
 const openai = new OpenAIProvider(...);
 const claude = new ClaudeProvider(...);
 const ollama = new OllamaProvider(...);

@@ -3,10 +3,12 @@
  * Shows how to deploy multiple agents in an HTTP server
  */
 
-import { createMultiAgentRuntime } from "../src/runtime/multi-agent-runtime";
-import { OpenAIProvider } from "../src/providers/openai.provider";
-import { ClaudeProvider } from "../src/providers/claude.provider";
-import { OllamaProvider } from "../src/providers/ollama.provider";
+import {
+  createMultiAgentRuntime,
+  OpenAIProvider,
+  ClaudeProvider,
+  OllamaProvider,
+} from "aruvi";
 
 // Create multi-agent runtime
 const app = createMultiAgentRuntime([

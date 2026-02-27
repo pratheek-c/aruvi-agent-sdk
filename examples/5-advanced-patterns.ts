@@ -3,11 +3,8 @@
  * Shows fallback providers, load balancing, and multi-turn conversations
  */
 
-import { OpenAIProvider } from "../src/providers/openai.provider";
-import { ClaudeProvider } from "../src/providers/claude.provider";
-import { OllamaProvider } from "../src/providers/ollama.provider";
-import { LLMProvider } from "../src/core/llm";
-import { Message } from "../src/core/types";
+import { OpenAIProvider, ClaudeProvider, OllamaProvider } from "aruvi";
+import type { LLMProvider, Message } from "aruvi";
 
 // Example 5.1: Provider Fallback Pattern
 async function exampleFallback() {

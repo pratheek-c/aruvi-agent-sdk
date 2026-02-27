@@ -53,6 +53,9 @@ bun examples/1-basic-chat.ts
 
 **Key concepts:**
 ```typescript
+import { OpenAIProvider } from "aruvi";
+import type { Message } from "aruvi";
+
 const provider = new OpenAIProvider(apiKey, model);
 const response = await provider.chat([
   { role: "user", content: "Your question" }
@@ -79,6 +82,8 @@ bun examples/2-streaming.ts
 
 **Key concepts:**
 ```typescript
+import { OpenAIProvider } from "aruvi";
+
 for await (const chunk of provider.stream(messages)) {
   process.stdout.write(chunk);
 }
@@ -105,6 +110,9 @@ Create intelligent agents with custom tools.
 ```bash
 bun examples/3-tools.ts
 ```
+
+import { Agent, OpenAIProvider } from "aruvi";
+import type { Tool } from "aruvi";
 
 **Key concepts:**
 ```typescript

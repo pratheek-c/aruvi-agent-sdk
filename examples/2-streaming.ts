@@ -3,10 +3,8 @@
  * Demonstrates real-time streaming from different providers
  */
 
-import { OpenAIProvider } from "../src/providers/openai.provider";
-import { ClaudeProvider } from "../src/providers/claude.provider";
-import { OllamaProvider } from "../src/providers/ollama.provider";
-import { Message } from "../src/core/types";
+import { OpenAIProvider, ClaudeProvider, OllamaProvider } from "aruvi";
+import type { Message } from "aruvi";
 
 // Example 2.1: Stream from OpenAI
 async function streamOpenAI() {

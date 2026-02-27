@@ -3,9 +3,8 @@
  * Shows how to create custom tools and register them with agents
  */
 
-import { Tool } from "../src/core/types";
-import { Agent } from "../src/core/agent";
-import { OpenAIProvider } from "../src/providers/openai.provider";
+import { Agent, OpenAIProvider } from "aruvi";
+import type { Tool } from "aruvi";
 
 // Example 3.1: Calculator Tool
 const calculatorTool: Tool = {

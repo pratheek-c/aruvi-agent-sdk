@@ -3,10 +3,8 @@
  * Shows how to use each provider for simple chat interactions
  */
 
-import { OpenAIProvider } from "../src/providers/openai.provider";
-import { ClaudeProvider } from "../src/providers/claude.provider";
-import { OllamaProvider } from "../src/providers/ollama.provider";
-import { Message } from "../src/core/types";
+import { OpenAIProvider, ClaudeProvider, OllamaProvider } from "aruvi";
+import type { Message } from "aruvi";
 
 // Example 1.1: OpenAI
 async function exampleOpenAI() {
