@@ -1,12 +1,31 @@
 {
   "name": "aruvi-agent-sdk",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./agents": "./dist/core/agent.js",
+    "./types": "./dist/core/types.js",
+    "./llm": "./dist/core/llm.js",
+    "./providers": "./dist/providers/index.js",
+    "./providers/openai": "./dist/providers/openai.provider.js",
+    "./providers/claude": "./dist/providers/claude.provider.js",
+    "./providers/azure": "./dist/providers/azure.provider.js",
+    "./providers/ollama": "./dist/providers/ollama.provider.js",
+    "./providers/openrouter": "./dist/providers/openrouter.provider.js",
+    "./providers/mimo": "./dist/providers/mimo.provider.js",
+    "./runtime": "./dist/runtime/multi-agent-runtime.js"
+  },
   "scripts": {
-    "dev": "bun run --hot src/index.ts"
+    "dev": "bun run --hot src/index.ts",
+    "build": "tsc"
   },
   "dependencies": {
     "hono": "^4.12.2"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "typescript": "latest"
   }
 }
