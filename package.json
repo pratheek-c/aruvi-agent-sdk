@@ -1,31 +1,109 @@
 {
   "name": "aruvi-agent-sdk",
   "version": "1.0.0",
+  "description": "🧠 Generic Multi-Provider AI Agent Framework - No SDK dependencies, Raw HTTP only",
   "type": "module",
   "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./dist/index.js",
-    "./agents": "./dist/core/agent.js",
-    "./types": "./dist/core/types.js",
-    "./llm": "./dist/core/llm.js",
-    "./providers": "./dist/providers/index.js",
-    "./providers/openai": "./dist/providers/openai.provider.js",
-    "./providers/claude": "./dist/providers/claude.provider.js",
-    "./providers/azure": "./dist/providers/azure.provider.js",
-    "./providers/ollama": "./dist/providers/ollama.provider.js",
-    "./providers/openrouter": "./dist/providers/openrouter.provider.js",
-    "./providers/mimo": "./dist/providers/mimo.provider.js",
-    "./runtime": "./dist/runtime/multi-agent-runtime.js"
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./agents": {
+      "import": "./dist/core/agent.js",
+      "types": "./dist/core/agent.d.ts"
+    },
+    "./types": {
+      "import": "./dist/core/types.js",
+      "types": "./dist/core/types.d.ts"
+    },
+    "./llm": {
+      "import": "./dist/core/llm.js",
+      "types": "./dist/core/llm.d.ts"
+    },
+    "./providers": {
+      "import": "./dist/providers/index.js",
+      "types": "./dist/providers/index.d.ts"
+    },
+    "./providers/openai": {
+      "import": "./dist/providers/openai.provider.js",
+      "types": "./dist/providers/openai.provider.d.ts"
+    },
+    "./providers/claude": {
+      "import": "./dist/providers/claude.provider.js",
+      "types": "./dist/providers/claude.provider.d.ts"
+    },
+    "./providers/azure": {
+      "import": "./dist/providers/azure.provider.js",
+      "types": "./dist/providers/azure.provider.d.ts"
+    },
+    "./providers/ollama": {
+      "import": "./dist/providers/ollama.provider.js",
+      "types": "./dist/providers/ollama.provider.d.ts"
+    },
+    "./providers/openrouter": {
+      "import": "./dist/providers/openrouter.provider.js",
+      "types": "./dist/providers/openrouter.provider.d.ts"
+    },
+    "./providers/mimo": {
+      "import": "./dist/providers/mimo.provider.js",
+      "types": "./dist/providers/mimo.provider.d.ts"
+    },
+    "./runtime": {
+      "import": "./dist/runtime/multi-agent-runtime.js",
+      "types": "./dist/runtime/multi-agent-runtime.d.ts"
+    }
+  },
+  "keywords": [
+    "ai",
+    "agent",
+    "llm",
+    "openai",
+    "claude",
+    "anthropic",
+    "azure",
+    "ollama",
+    "openrouter",
+    "streaming",
+    "agent-framework",
+    "tool-calling",
+    "multi-agent",
+    "typescript",
+    "hono"
+  ],
+  "author": "Pratheek",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pratheek-c/aruvi-agent-sdk.git"
+  },
+  "homepage": "https://github.com/pratheek-c/aruvi-agent-sdk#readme",
+  "bugs": {
+    "url": "https://github.com/pratheek-c/aruvi-agent-sdk/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   },
   "scripts": {
     "dev": "bun run --hot src/index.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "lint": "echo 'Add eslint for linting'",
+    "type-check": "tsc --noEmit",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run build && npm run type-check"
   },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
   "dependencies": {
     "hono": "^4.12.2"
   },
   "devDependencies": {
     "@types/bun": "latest",
-    "typescript": "latest"
+    "typescript": "^5.9.3"
   }
 }

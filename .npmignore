@@ -1,0 +1,11 @@
+src/
+examples/
+.env
+.env.example
+*.test.ts
+tsconfig.json
+.github/
+.gitignore
+.eslintrc
+jest.config.js
+vitest.config.ts

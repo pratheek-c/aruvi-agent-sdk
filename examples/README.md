@@ -7,30 +7,37 @@ Complete, runnable examples demonstrating all features of the Aruvi Agent Framew
 ### 1. Setup
 
 ```bash
+# Build the SDK
+npm run build
+
 # Install dependencies
 npm install
-
-# Create .env file with your API keys
-cp .env.example .env
 ```
 
 ### 2. Run Examples
-
-With Node.js:
-```bash
-npm run build
-node dist/examples/1-basic-chat.js
-```
 
 With Bun:
 ```bash
 bun examples/1-basic-chat.ts
 ```
 
+With Node.js:
+```bash
+npm run build
+node dist/examples/your-example.js
+```
+
 With ts-node:
 ```bash
 npx ts-node examples/1-basic-chat.ts
 ```
+
+**Note:** The package name is `aruvi-agent-sdk`, installed locally. For this to work:
+- Make sure to run `npm run build` first
+- Examples import from `'aruvi-agent-sdk'` (the package name)
+- The built dist/ folder must exist
+
+For more info on local setup, see [LOCAL-SETUP.md](../LOCAL-SETUP.md)
 
 ---
 

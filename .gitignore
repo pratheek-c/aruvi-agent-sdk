@@ -1,2 +1,10 @@
 # deps
 node_modules/
+dist/
+bun.lock
+IMPORT-EXPLAINED.md
+LOCAL-SETUP.md
+PUBLISHING-WORKFLOW.md
+PUBLISH-CHECKLIST.md
+.npmrc
+.env

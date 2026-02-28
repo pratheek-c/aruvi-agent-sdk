@@ -3,8 +3,8 @@
  * Shows fallback providers, load balancing, and multi-turn conversations
  */
 
-import { OpenAIProvider, ClaudeProvider, OllamaProvider } from "aruvi";
-import type { LLMProvider, Message } from "aruvi";
+import { OpenAIProvider, ClaudeProvider, OllamaProvider } from "aruvi-agent-sdk";
+import type { LLMProvider, Message } from "aruvi-agent-sdk";
 
 // Example 5.1: Provider Fallback Pattern
 async function exampleFallback() {
