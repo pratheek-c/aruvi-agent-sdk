@@ -1,10 +1,81 @@
-# deps
+# Dependencies
 node_modules/
-dist/
+package-lock.json
 bun.lock
+yarn.lock
+pnpm-lock.yaml
+
+# Build outputs (regenerable from source)
+dist/
+build/
+*.tsbuildinfo
+
+# Environment variables (secrets)
+.env
+.env.local
+.env.*.local
+
+# NPM / Credentials
+.npmrc
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# IDE / Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.iml
+.gradle/
+.project
+.classpath
+.c9/
+*.sublime-workspace
+
+# OS-specific
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs and debugging
+*.log
+logs/
+lerna-debug.log*
+.pnpm-debug.log
+
+# Testing
+coverage/
+.nyc_output/
+
+# Misc
+.cache/
+dist-ssr/
+*.local
+
+# Compiled JS/maps in examples (TypeScript source is the source of truth)
+examples/*.js
+examples/*.js.map
+
+# Auto-generated / one-time docs created during development
+DOCS-INDEX.md
 IMPORT-EXPLAINED.md
 LOCAL-SETUP.md
-PUBLISHING-WORKFLOW.md
+SETUP-COMPLETE.md
+QUICK-FIX-SUMMARY.md
+NPM-PUBLISH-GUIDE.md
 PUBLISH-CHECKLIST.md
-.npmrc
-.env
+PUBLISHING-WORKFLOW.md
+
+# Database files created by StoolapMemory at runtime
+aruvi-memory
+aruvi-memory/
+*.db
+*.sqlite
+*.sqlite3
+
+# Bun lock file (keep bun.lockb, not the text bun.lock)
+bun.lock

@@ -13,3 +13,16 @@ export {
 } from "./providers";
 
 export { createMultiAgentRuntime } from "./runtime/multi-agent-runtime";
+export { createMemoryApi } from "./runtime/memory-api";
+export { openApiSpec } from "./runtime/openapi-spec";
+
+// Memory / Vector store
+export { StoolapMemory } from "./memory/stoolap-memory";
+export type {
+  MemoryConfig,
+  ChatSession,
+  ChatMessage,
+  VectorEntry,
+  MemorySearchResult,
+  CreateChatOptions,
+} from "./memory/types";
