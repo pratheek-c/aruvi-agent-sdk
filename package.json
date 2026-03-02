@@ -1,6 +1,6 @@
 {
   "name": "aruvi-agent-sdk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "🧠 Generic Multi-Provider AI Agent Framework - No SDK dependencies, Raw HTTP only",
   "type": "module",
   "main": "./dist/index.js",
@@ -53,6 +53,14 @@
     "./runtime": {
       "import": "./dist/runtime/multi-agent-runtime.js",
       "types": "./dist/runtime/multi-agent-runtime.d.ts"
+    },
+    "./runtime/memory-api": {
+      "import": "./dist/runtime/memory-api.js",
+      "types": "./dist/runtime/memory-api.d.ts"
+    },
+    "./memory": {
+      "import": "./dist/memory/index.js",
+      "types": "./dist/memory/index.d.ts"
     }
   },
   "keywords": [
@@ -70,7 +78,12 @@
     "tool-calling",
     "multi-agent",
     "typescript",
-    "hono"
+    "hono",
+    "memory",
+    "vector-store",
+    "vector-embeddings",
+    "stoolap",
+    "rag"
   ],
   "author": "Pratheek",
   "license": "MIT",
@@ -88,6 +101,7 @@
   "scripts": {
     "dev": "bun run --hot src/index.ts",
     "build": "tsc",
+    "docs": "bun run src/docs-server.ts",
     "lint": "echo 'Add eslint for linting'",
     "type-check": "tsc --noEmit",
     "prepare": "npm run build",
@@ -100,10 +114,13 @@
     "CHANGELOG.md"
   ],
   "dependencies": {
+    "@scalar/hono-api-reference": "^0.9.46",
+    "@stoolap/node": "^0.3.3",
     "hono": "^4.12.2"
   },
   "devDependencies": {
     "@types/bun": "latest",
+    "@types/node": "^25.3.3",
     "typescript": "^5.9.3"
   }
 }
