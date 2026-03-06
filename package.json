@@ -1,6 +1,6 @@
 {
   "name": "aruvi-agent-sdk",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "🧠 Generic Multi-Provider AI Agent Framework - No SDK dependencies, Raw HTTP only",
   "type": "module",
   "main": "./dist/index.js",
@@ -104,6 +104,7 @@
     "docs": "bun run src/docs-server.ts",
     "lint": "echo 'Add eslint for linting'",
     "type-check": "tsc --noEmit",
+    "test": "bun test",
     "prepare": "npm run build",
     "prepublishOnly": "npm run build && npm run type-check"
   },

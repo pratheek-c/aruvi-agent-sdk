@@ -52,7 +52,8 @@ export class StoolapMemory {
   private async _createSchema(): Promise<void> {
     await this.db.exec(`
       CREATE TABLE IF NOT EXISTS chats (
-        chat_id      TEXT      PRIMARY KEY,
+        id           INTEGER   PRIMARY KEY AUTOINCREMENT,
+        chat_id      TEXT      NOT NULL UNIQUE,
         chat_heading TEXT      NOT NULL,
         agent_name   TEXT      NOT NULL,
         agent_id     TEXT      NOT NULL,
@@ -65,7 +66,7 @@ export class StoolapMemory {
 
       CREATE TABLE IF NOT EXISTS messages (
         id           INTEGER   PRIMARY KEY AUTOINCREMENT,
-        chat_id      TEXT      NOT NULL REFERENCES chats(chat_id),
+        chat_id      TEXT      NOT NULL,
         agent_name   TEXT      NOT NULL,
         agent_id     TEXT      NOT NULL,
         role         TEXT      NOT NULL CHECK (role IN ('system','user','assistant')),
